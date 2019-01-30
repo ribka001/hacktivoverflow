@@ -141,7 +141,6 @@ export default new Vuex.Store({
           context.dispatch(`getQuestionById`, id)
           context.dispatch(`getAllQuestion`)
           context.commit('setVoteCount', data)
-          router.push(`/questions/${id}`)
         })
         .catch(err => {
           swal("Oops!", `${err.response.data.message}`, "error")
@@ -151,7 +150,7 @@ export default new Vuex.Store({
     downvoteQuest (context, id) {
       axios({
         method: 'PUT',
-        url: `/downvote/${id}`,
+        url: `/questions/downvote/${id}`,
         headers: {
           token: localStorage.getItem('token')
         }
@@ -160,7 +159,6 @@ export default new Vuex.Store({
           context.dispatch(`getQuestionById`, id)
           context.dispatch(`getAllQuestion`)
           context.commit('setVoteCount', data)
-          router.push(`/questions/${id}`)
         })
         .catch(err => {
           swal("Oops!", `${err.response.data.message}`, "error")
@@ -228,6 +226,44 @@ export default new Vuex.Store({
           swal("Oops!", `${err.response.data.message}`, "error")
           console.log(err.response)
         })  
+    },
+    upvoteAnswer (context, id) {
+      axios({
+        method: 'PUT',
+        url: `/answers/upvote/${id}`,
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(({data}) => {
+          context.dispatch(`getQuestionById`, id)
+          context.dispatch(`getAllQuestion`)
+          context.commit('setVoteCount', data)
+          router.push(`/questions/${id}`)
+        })
+        .catch(err => {
+          swal("Oops!", `${err.response.data.message}`, "error")
+          console.log('get upvoteQuest', err.response)
+        })
+    },
+    downvoteAnswer (context, id) {
+      axios({
+        method: 'PUT',
+        url: `/answers/downvote/${id}`,
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+        .then(({data}) => {
+          context.dispatch(`getQuestionById`, id)
+          context.dispatch(`getAllQuestion`)
+          context.commit('setVoteCount', data)
+          router.push(`/questions/${id}`)
+        })
+        .catch(err => {
+          swal("Oops!", `${err.response.data.message}`, "error")
+          console.log('get downvoteQuest', err.response)
+        })
     },
   }
 })

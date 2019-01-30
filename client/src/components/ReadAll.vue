@@ -21,7 +21,11 @@
         <div class="card text-white bg-secondary mb-3" style="width: 1700px; margin-left:50px;" v-for="question in questions" :key="question._id">
             <div class="card-header"><router-link :to='{name:"question",params:{id:question._id}}'>{{question.title}}</router-link></div>
             <div class="card-body">
-                <h5>{{question.question}}</h5>
+                <button id="upvoteQuest" class="btn btn-primary" @click.prevent="upvoteQuest(question._id)">UPVOTE</button>
+                {{question.vote}}
+                <button id="upvoteQuest" class="btn btn-primary" @click.prevent="downvoteQuest(question._id)">DOWNVOTE</button>
+                <br>
+                {{question.question}}
             </div>
         </div>
     </div>
@@ -46,13 +50,21 @@ export default {
     },
     methods: {
         ...mapActions([
-            'addQuestion'
+            'addQuestion',
+            'upvoteQuest',
+            'downvoteQuest'
         ]),
         addQuestion() {
             this.$store.dispatch('addQuestion', {title: this.title, question: this.question, tags: this.tags})
             this.title = ''
             this.question = ''
             this.tags = ''
+        },
+        upvoteQuest(id){
+            this.$store.dispatch('upvoteQuest', id)
+        },
+        downVote(id){
+            this.$store.dispatch('downvoteQuest', id)
         }
     },
     mounted(){

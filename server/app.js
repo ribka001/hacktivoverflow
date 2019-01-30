@@ -6,6 +6,7 @@ var cors = require('cors');
 var mongoose = require('mongoose');
 require('dotenv').config();
 var port = process.env.PORT || 3000
+const cron = require("node-cron");
 
 mongoose.connect('mongodb://localhost/hacktivoverflow-h8', { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -40,6 +41,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error')
 })
+
+let newYear = '0 0 1 1 *'
+let seconds = '* * * * * *'
+// cron.schedule(seconds, function() {
+//   console.log("newYear");
+// });
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
