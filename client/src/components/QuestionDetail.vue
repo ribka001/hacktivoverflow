@@ -2,6 +2,9 @@
     <div style="margin-left:550px;">
         Detail Question:
         <br>
+        <button id="upvoteQuest" class="btn btn-primary" @click.prevent="upvoteQuest(question._id)">UPVOTE</button>
+        {{question.vote}}
+        <button id="upvoteQuest" class="btn btn-primary" @click.prevent="downvoteQuest(question._id)">DOWNVOTE</button>
         <br>
         <h3>{{question.title}}</h3>
         <h5>{{question.question}}</h5>
@@ -51,6 +54,9 @@
         <ul> Answers:
             <li v-for="answer in question.answer" :key="answer._id">
                 {{answer.title}}<br>
+                <button id="upvoteQuest" class="btn btn-primary" @click.prevent="upvoteAnswer(answer._id)">UPVOTE</button>
+                {{answer.vote}}
+                <button id="upvoteQuest" class="btn btn-primary" @click.prevent="downvoteAnswer(answer._id)">DOWNVOTE</button>
                 {{answer.answer}}
                 <button data-toggle="modal" data-target="#editAnswerModal">EDIT ANSWER</button>
                 <div class="modal fade" id="editAnswerModal" tabindex="-1" role="dialog" aria-labelledby="editAnswerModalLabel" aria-hidden="true">
@@ -126,6 +132,18 @@ export default {
         },
         updateAnswer(id) {
             this.$store.dispatch('updateQuestion', {id: id, title: this.upAnswer.title, answer: this.upAnswer.answer})
+        },
+        upvoteQuest(id){
+            this.$store.dispatch('upvoteQuest', id)
+        },
+        downVoteQuest(id){
+            this.$store.dispatch('downvoteQuest', id)
+        },
+        upvoteAnswer(id){
+            this.$store.dispatch('upvoteAnswer', id)
+        },
+        downvoteAnswer(id){
+            this.$store.dispatch('downvoteAnswer', id)
         }
     },
     mounted() {

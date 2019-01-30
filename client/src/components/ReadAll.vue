@@ -63,7 +63,7 @@ export default {
         upvoteQuest(id){
             this.$store.dispatch('upvoteQuest', id)
         },
-        downVote(id){
+        downVoteQuest(id){
             this.$store.dispatch('downvoteQuest', id)
         }
     },

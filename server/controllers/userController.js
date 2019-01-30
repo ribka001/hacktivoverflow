@@ -2,6 +2,8 @@ const User = require('../models/User')
 const {compareCrypt} = require('../helpers/bcrypt')
 const {getToken} = require('../helpers/jwt')
 require('dotenv').config()
+const kue = require('kue')
+const queue = kue.createQueue()
 
 class UserController {
   static create(req, res) {
@@ -11,6 +13,11 @@ class UserController {
     })
     user.save()
       .then(result => {
+        queue.create('email', {
+          title: `Welcome to Hacktiv-overflow!`,
+          email: result.email,
+          template: `Welcome ${result.email}, You have successfully registering!`
+        }).save();
         res.status(201).json(result)
       })
       .catch(err => {
