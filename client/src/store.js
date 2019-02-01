@@ -176,7 +176,7 @@ export default new Vuex.Store({
       .then(() => {
         context.dispatch('getQuestionById', id)
         context.dispatch(`getAllQuestion`)
-        router.push(`/questions/${id}`)
+        router.push(`/`)
       })
       .catch((err) => {
         swal("Oops!", `${err.response.data.message}`, "error")
@@ -198,7 +198,6 @@ export default new Vuex.Store({
         .then(() => {
           context.dispatch(`getQuestionById`, obj.id)
           context.dispatch(`getAllQuestion`)
-          router.push(`/questions/${obj.id}`)
         })
         .catch(err => {
           swal("Oops!", `${err.response.data.message}`, "error")
@@ -239,7 +238,6 @@ export default new Vuex.Store({
           context.dispatch(`getQuestionById`, id)
           context.dispatch(`getAllQuestion`)
           context.commit('setVoteCount', data)
-          router.push(`/questions/${id}`)
         })
         .catch(err => {
           swal("Oops!", `${err.response.data.message}`, "error")
@@ -258,7 +256,6 @@ export default new Vuex.Store({
           context.dispatch(`getQuestionById`, id)
           context.dispatch(`getAllQuestion`)
           context.commit('setVoteCount', data)
-          router.push(`/questions/${id}`)
         })
         .catch(err => {
           swal("Oops!", `${err.response.data.message}`, "error")

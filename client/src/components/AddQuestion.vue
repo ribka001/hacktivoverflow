@@ -8,8 +8,9 @@
             <input type="text" name="title" v-model="title" placeholder="title" class="form__input" style="width:300px; height:60px;" required>
         </span>   
         <span class="form__field" style=" padding-right:50px;">
-            <label for="question">Question : </label>          
-            <textarea name="question" form="form-article" v-model="question" placeholder="question" class="form__input" style="width:600px; height:60px;" required></textarea>        
+            <label for="question">Question : </label>
+            <wysiwyg v-model="question" />
+            <!-- <textarea name="question" form="form-article" v-model="question" placeholder="question" class="form__input" style="width:600px; height:60px;" required></textarea>         -->
         </span>
         <span class="form__field" style=" padding-right:50px;">
             <button id="buttonAddQuestion" v-on:click.prevent="addQuestion()">ADD QUESTION</button>

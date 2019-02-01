@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-left:550px;">
+    <div style="margin-left:20%;">
         Detail Question:
         <br>
         <button id="upvoteQuest" class="btn btn-primary" @click.prevent="upvoteQuest(question._id)">UPVOTE</button>
@@ -7,7 +7,7 @@
         <button id="upvoteQuest" class="btn btn-primary" @click.prevent="downvoteQuest(question._id)">DOWNVOTE</button>
         <br>
         <h3>{{question.title}}</h3>
-        <h5>{{question.question}}</h5>
+        <div v-html="question.question"></div>
         <br>
         <br>
         <button data-toggle="modal" data-target="#editQuestionModal">EDIT QUESTION</button>
@@ -57,7 +57,7 @@
                 <button id="upvoteQuest" class="btn btn-primary" @click.prevent="upvoteAnswer(answer._id)">UPVOTE</button>
                 {{answer.vote}}
                 <button id="upvoteQuest" class="btn btn-primary" @click.prevent="downvoteAnswer(answer._id)">DOWNVOTE</button>
-                {{answer.answer}}
+                <div v-html="answer.answer"></div>
                 <button data-toggle="modal" data-target="#editAnswerModal">EDIT ANSWER</button>
                 <div class="modal fade" id="editAnswerModal" tabindex="-1" role="dialog" aria-labelledby="editAnswerModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

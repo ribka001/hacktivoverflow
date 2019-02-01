@@ -6,7 +6,8 @@
         </div> 
         <div class="form__field" style=" padding-right:50px;">
             <label for="content">Answer</label>          
-            <textarea name="content" form="form-article" v-model="content" placeholder="content" class="form__input" required></textarea>        
+            <wysiwyg v-model="content" />
+            <!-- <textarea name="content" form="form-article" v-model="content" placeholder="content" class="form__input" required></textarea>         -->
         </div>                  
         <div class="form__field" style=" padding-right:50px;">
             <button id="buttonAddAnswer" class="btn btn-primary" @click.prevent="addAnswer()">Add Answer</button>
